@@ -16,6 +16,7 @@ const ContactForm = () => {
                 <div>
                     <label htmlFor="firstName">First Name*</label>
                     <input
+                        data-testid="firstName"
                         name="firstName"
                         placeholder="bill"
                         ref={register({ required: true, maxLength: 3 })}
@@ -31,6 +32,7 @@ const ContactForm = () => {
                 <div>
                     <label htmlFor="lastName">Last Name*</label>
                     <input
+                        data-testid="lastName"
                         name="lastName"
                         placeholder="luo"
                         ref={register({ required: true })}
@@ -50,7 +52,11 @@ const ContactForm = () => {
                     >
                         Email*
                     </label>
-                    <input name="email" ref={register({ required: true })} />
+                    <input
+                        name="email"
+                        data-testid="email"
+                        ref={register({ required: true })}
+                    />
                     {errors.email && (
                         <p>
                             Looks like there was an error: {errors.email.type}
@@ -60,6 +66,7 @@ const ContactForm = () => {
                 <div>
                     <label htmlFor="message">Message</label>
                     <textarea
+                        data-testid="message"
                         name="message"
                         ref={register({ required: false })}
                     />
