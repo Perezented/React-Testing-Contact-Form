@@ -1,17 +1,16 @@
 import React from 'react';
 
 import ContactForm from './ContactForm';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, getByLabelText } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { act } from 'react-dom/test-utils';
 
 test('ContactForm renders', () => {
     render(<ContactForm />);
 });
 
-test('able to fill out form and submit', async () => {
-    const { getByTestId } = render(<ContactForm />);
-    console.log(getByTestId(/firstname/i).value);
+test('able to fill out form and submit', () => {
+    const { getByTestId, getByText, getByLabelText } = render(<ContactForm />);
+
     fireEvent.change(getByTestId(/firstname/i), {
         target: { name: 'firstName', value: 'first name here' },
     });
@@ -25,5 +24,8 @@ test('able to fill out form and submit', async () => {
     fireEvent.change(getByTestId(/message/i), {
         target: { name: 'message', value: 'gimme fake message here please' },
     });
-    console.log(getByTestId(/message/i).value);
+    console.log(getByText(/email/i).value);
+    console.log(getByLabelText(/email/i).value);
+    console.log(getByTestId(/email/i).value);
+    fireEvent.click(getByTestId(/submit/i));
 });
